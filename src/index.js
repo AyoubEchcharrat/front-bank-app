@@ -9,6 +9,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={< Layout />} >
       <Route path='/' element={<Index />} />
+      <Route path='/sign-in' element={<SignIn />} />
     </Route>
   )
 )
@@ -16,7 +17,9 @@ const router = createBrowserRouter(
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <Provider store={store}>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </Provider>
 );

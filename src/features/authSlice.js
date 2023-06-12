@@ -2,6 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { loginUser } from './authActions'
 import { getuserProfile } from './getprofileActions'
+import { modifyuserProfile } from './modifyprofileActions'
 
 // initialize userToken from local storage
 const userToken = localStorage.getItem('userToken')
@@ -56,14 +57,28 @@ const authSlice = createSlice({
         },
         [getuserProfile.fulfilled]: (state, { payload }) => {
             state.loading = false
-            state.userProfile.firstName = payload.data.firstName
-            state.userProfile.lastName = payload.data.lastName
+            console.log({ payload })
+            state.userProfile.firstName = payload.data.body.firstName
+            state.userProfile.lastName = payload.data.body.lastName
         },
         [getuserProfile.rejected]: (state, { payload }) => {
             state.loading = false
             state.error = payload
         },
-
+        [modifyuserProfile.pending]: (state) => {
+            state.loading = true
+            state.error = null
+        },
+        [modifyuserProfile.fulfilled]: (state, { payload }) => {
+            state.loading = false
+            console.log({ payload })
+            state.userProfile.firstName = payload.data.body.firstName
+            state.userProfile.lastName = payload.data.body.lastName
+        },
+        [modifyuserProfile.rejected]: (state, { payload }) => {
+            state.loading = false
+            state.error = payload
+        },
     },
 })
 

@@ -10,10 +10,6 @@ import { getuserProfile } from '../features/getprofileActions'
 export default function Header() {
     const { userToken } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(getuserProfile)
-    },[dispatch])
-
 
     return (
     <nav className="main-nav">
@@ -24,7 +20,7 @@ export default function Header() {
         {userToken ?  
                 <Link onClick={() => dispatch(logout())} className="main-nav-item" to="/">
                     <img src={user} alt="user icon" className="main-nav-user-icon"/>
-                    Disconnexion
+                    Logout
                 </Link>
             : 
                 <Link className="main-nav-item" to="/sign-in">

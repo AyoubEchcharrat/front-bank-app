@@ -1,13 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 /* import authReducer from './features/authSlice' */
 import themeReducer from './features/theme'
-import clogReducer from './features/signinSlice'
-import authReducer from './features/signinCallAPI'
+import authReducer from './features/authSlice'
 
 export const store = configureStore({
     reducer: {
         theme: themeReducer,
-        sign: clogReducer,
-        auth: authReducer
+        auth: authReducer,
     }
-})
+}) 

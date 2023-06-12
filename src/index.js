@@ -6,13 +6,17 @@ import Layout from './layouts/Layout';
 import SignIn from './pages/signin/Signin';
 import { Provider } from 'react-redux';
 import { store } from './store';
-
+import User from './pages/user/User';
+import { ProtectedRoute } from './pages/protectedRoute';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={< Layout />} >
       <Route path='/' element={<Index />} />
       <Route path='/sign-in' element={<SignIn />} />
+      <Route element={<ProtectedRoute />} >
+        <Route path='/user' element={<User />} />
+      </Route>
     </Route>
   )
 )

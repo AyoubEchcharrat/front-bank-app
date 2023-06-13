@@ -54,10 +54,27 @@
 }
 
 .main-nav-user-icon {
-  width: 27px;
+  width: 20px;
   margin-right: 6px;
-  margin-bottom: 2px;
 }
+
+.info-header-container{
+  display: flex;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.username-header-container img{
+  width: 30px;
+}
+
+.username-header-container{
+  margin: 0 20px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 /* ----------------------- */
 /* --------FOOTER--------  */

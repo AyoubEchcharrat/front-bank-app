@@ -32,7 +32,7 @@ export default function UserHeader() {
         isEditing ? 
         <div className="header">
             <form className='edit-form' onSubmit={handleSubmit(submitForm)}>
-                <div className='input-wrapper'>
+                <div>
                     <input
                         type='firstName'
                         className='editing-input'

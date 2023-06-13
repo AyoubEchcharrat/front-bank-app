@@ -6,9 +6,9 @@ export const ProtectedRoute = () => {
     const { userProfile } = useSelector((state) => state.auth)
     const navigate = useNavigate()
     useEffect(() => {
-        if (!userProfile) {
+        if (!userProfile.email) {
             console.log('unauthorized')
-            navigate('/')
+            navigate('/sign-in')
         }
     }, [navigate, userProfile])
 

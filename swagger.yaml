@@ -1,0 +1,125 @@
+swagger: '2.0'
+info:
+  title: API de Transactions
+  description: Contient tous les endpoints disponibles pour les transactions
+  version: '1.0.0'
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - http
+paths:
+  /transactions:
+    get:
+      tags:
+        - Transactions
+      summary: Récupère toutes les transactions pour le mois en cours de l'utilisateur actuel
+      parameters:
+        - name: Authorization
+          in: header
+          description: Jeton JWT d'authentification
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Succès
+          schema:
+            $ref: '#/definitions/TransactionsResponse'
+        '401':
+          description: Non autorisé
+        '500':
+          description: Erreur interne du serveur
+
+  /transactions/{transactionId}:
+    get:
+      tags:
+        - Transactions
+      summary: Récupère les détails d'une transaction spécifique de l'utilisateur actuel
+      parameters:
+        - name: transactionId
+          in: path
+          description: ID de la transaction
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: Jeton JWT d'authentification
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Succès
+          schema:
+            $ref: '#/definitions/Transaction'
+        '401':
+          description: Non autorisé
+        '404':
+          description: Transaction non trouvée
+        '500':
+          description: Erreur interne du serveur
+
+    put:
+      tags:
+        - Transactions
+      summary: Met à jour les informations d'une transaction spécifique de l'utilisateur actuel
+      parameters:
+        - name: transactionId
+          in: path
+          description: ID de la transaction
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: Jeton JWT d'authentification
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Nouvelles informations de la transaction
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionUpdate'
+      responses:
+        '200':
+          description: Succès
+          schema:
+            $ref: '#/definitions/Transaction'
+        '401':
+          description: Non autorisé
+        '404':
+          description: Transaction non trouvée
+        '500':
+          description: Erreur interne du serveur
+
+definitions:
+  TransactionsResponse:
+    type: object
+    properties:
+      transactions:
+        type: array
+        items:
+          $ref: '#/definitions/Transaction'
+
+  Transaction:
+    type: object
+    properties:
+      id:
+        type: string
+      date:
+        type: string
+        format: date
+      amount:
+        type: number
+      description:
+        type: string
+      category:
+        type: string
+      note:
+        type: string
+
+  TransactionUpdate:
+    type: object
+    properties:
+      note:
+        type: string
+      category:
+        type: string

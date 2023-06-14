@@ -1,16 +1,17 @@
 import { useEffect } from "react"
-import { useSelector } from "react-redux"
 import { Outlet, useNavigate } from "react-router-dom"
 
 export const ProtectedRoute = () => {
-    const { userProfile } = useSelector((state) => state.auth)
+    const userToken = localStorage.getItem('userToken')
+        ? localStorage.getItem('userToken')
+        : null
     const navigate = useNavigate()
     useEffect(() => {
-        if (!userProfile.email) {
+        if (!userToken) {
             console.log('unauthorized')
             navigate('/sign-in')
         }
-    }, [navigate, userProfile])
+    }, [navigate, userToken])
 
-    return userProfile && <Outlet />
+    return <Outlet />
 }

@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import Formular from "../../components/formular/Formular";
-import { selectTheme } from "../../features/theme";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -10,13 +9,12 @@ export default function SignIn() {
 
     useEffect(() => {
         if (userToken) {
+        localStorage.setItem('userToken',userToken)
         navigate('/user')
         }
     }, [navigate, userToken])
-
-    const theme = useSelector(selectTheme)
     return (
-        <main className={theme === 'light' ? 'main bg-light' : 'main bg-dark'}>
+        <main className='main bg-dark'>
             <Formular/>
 
         </main>

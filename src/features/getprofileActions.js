@@ -16,6 +16,7 @@ export const getuserProfile = createAsyncThunk(
                 `${backendURL}/api/v1/user/profile`, {},
                 config
             )
+            localStorage.setItem('userInfos', JSON.stringify(data.data.body))
             return data
         } catch (error) {
             if (error.response && error.response.data.message) {

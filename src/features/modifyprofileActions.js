@@ -20,6 +20,7 @@ export const modifyuserProfile = createAsyncThunk(
                 },
                 config
             )
+            localStorage.setItem('userInfos', JSON.stringify(data.data.body))
             return data
         } catch (error) {
             if (error.response && error.response.data.message) {
